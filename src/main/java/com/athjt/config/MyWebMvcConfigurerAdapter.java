@@ -3,6 +3,7 @@ package com.athjt.config;
 import org.springframework.boot.web.servlet.MultipartConfigFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
@@ -28,12 +29,22 @@ public class MyWebMvcConfigurerAdapter extends WebMvcConfigurerAdapter {
         registry.addViewController("/main").setViewName("main");
         super.addViewControllers(registry);
     }
+    //设置上传文件的大小
     @Bean
     public MultipartConfigElement multipartConfigElement(){
         MultipartConfigFactory factory = new MultipartConfigFactory();
         factory.setMaxFileSize("3072MB");
         factory.setMaxRequestSize("3072MB");
         return factory.createMultipartConfig();
+    }
+    //配置跨域
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**")
+                .allowedOrigins("*")
+                .allowCredentials(true)
+                .allowedMethods("GET", "POST", "DELETE", "PUT")
+                .maxAge(3600);
     }
 }
 
