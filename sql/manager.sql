@@ -1,20 +1,58 @@
 /*
-SQLyog 企业版 - MySQL GUI v8.14 
-MySQL - 5.7.17-log : Database - zjtblog
+SQLyog Ultimate v12.08 (64 bit)
+MySQL - 5.7.12-log : Database - manager
 *********************************************************************
-*/
-
+*/
 
 /*!40101 SET NAMES utf8 */;
 
 /*!40101 SET SQL_MODE=''*/;
 
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 CREATE DATABASE /*!32312 IF NOT EXISTS*/`manager` /*!40100 DEFAULT CHARACTER SET utf8 */;
 
 USE `manager`;
+
+/*Table structure for table `base_info` */
+
+DROP TABLE IF EXISTS `base_info`;
+
+CREATE TABLE `base_info` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+  `redio` varchar(11) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT '单选',
+  `checkbox` varchar(124) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT '多选',
+  `select_choice` varchar(124) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT '下拉',
+  `start_live_time` datetime DEFAULT NULL COMMENT '开始时间',
+  `end_live_time` datetime DEFAULT NULL COMMENT '结束时间',
+  `deleted` int(1) DEFAULT '0' COMMENT '逻辑删除0-未删除;1-已删除',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime DEFAULT NULL COMMENT '修改时间',
+  `resource_id` int(11) DEFAULT '0' COMMENT '资源ID',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+/*Data for the table `base_info` */
+
+insert  into `base_info`(`id`,`redio`,`checkbox`,`select_choice`,`start_live_time`,`end_live_time`,`deleted`,`create_time`,`update_time`,`resource_id`) values (1,'1','1','1','2020-08-20 16:50:36','2020-08-20 16:50:39',0,'2020-08-20 16:50:41','2020-08-20 16:50:43',1);
+
+/*Table structure for table `resource` */
+
+DROP TABLE IF EXISTS `resource`;
+
+CREATE TABLE `resource` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '资源主键ID',
+  `resource_name` varchar(64) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT '资源名称',
+  `resource_local_url` varchar(500) COLLATE utf8_unicode_ci DEFAULT '' COMMENT '资源上传原路径',
+  `resource_upload_url` varchar(500) COLLATE utf8_unicode_ci DEFAULT '' COMMENT '资源上传目标路径',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime DEFAULT NULL COMMENT '修改时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+/*Data for the table `resource` */
 
 /*Table structure for table `t_menu` */
 
@@ -32,7 +70,7 @@ CREATE TABLE `t_menu` (
 
 /*Data for the table `t_menu` */
 
-insert  into `t_menu`(`id`,`icon`,`name`,`state`,`url`,`p_id`) values (1,'menu-plugin','系统菜单',1,NULL,-1),(10,'&#xe68e;','内容管理',1,NULL,1),(60,'&#xe631;','系统管理',1,NULL,1),(61,'&#xe705;','新闻资讯',1,'http://www.ifeng.com/',1),(1000,'icon-text','文章管理',2,'https://www.hongxiu.com/',10),(6000,'&#xe631;','菜单管理',2,'admin/menu/tomunemanage',60),(6010,'icon-icon10','角色管理',2,'admin/role/torolemanage',60),(6020,'&#xe612;','用户管理',2,'admin/user/tousermanage',60),(6030,'&#xe631;','sql监控',2,'druid/index.html',60),(6040,'icon-ziliao','修改密码',2,'admin/user/toUpdatePassword',60),(6050,'icon-tuichu','安全退出',2,'user/logout',60),(6100,'icon-text','凤凰网',2,'http://www.ifeng.com/',61),(200000,'44','44',3,'44',2000);
+insert  into `t_menu`(`id`,`icon`,`name`,`state`,`url`,`p_id`) values (1,'menu-plugin','系统菜单',1,NULL,-1),(10,'&#xe68e;','基础管理',1,NULL,1),(60,'&#xe631;','系统管理',1,NULL,1),(61,'&#xe705;','新闻资讯',1,'http://www.ifeng.com/',1),(1000,'&#xe608;','基础信息',2,'admin/baseInfo/getbaseinfolist',10),(6000,'&#xe631;','菜单管理',2,'admin/menu/tomunemanage',60),(6010,'icon-icon10','角色管理',2,'admin/role/torolemanage',60),(6020,'&#xe612;','用户管理',2,'admin/user/tousermanage',60),(6030,'&#xe631;','sql监控',2,'druid/index.html',60),(6040,'icon-ziliao','修改密码',2,'admin/user/toUpdatePassword',60),(6050,'icon-tuichu','安全退出',2,'user/logout',60),(6100,'icon-text','凤凰网',2,'http://www.ifeng.com/',61),(200000,'44','44',3,'44',2000);
 
 /*Table structure for table `t_role` */
 
@@ -59,11 +97,11 @@ CREATE TABLE `t_role_menu` (
   `menu_id` int(11) DEFAULT NULL,
   `role_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=289 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=300 DEFAULT CHARSET=utf8;
 
 /*Data for the table `t_role_menu` */
 
-insert  into `t_role_menu`(`id`,`menu_id`,`role_id`) values (36,10,2),(42,1,2),(45,1,4),(48,1,5),(55,1,9),(65,1,7),(66,10,7),(126,60,15),(127,6010,15),(128,6020,15),(129,6030,15),(130,6040,15),(131,6050,15),(248,2000,1),(259,100000,1),(278,10,1),(279,1000,1),(280,60,1),(281,6000,1),(282,6010,1),(283,6020,1),(284,6030,1),(285,6040,1),(286,6050,1),(287,61,1),(288,6100,1);
+insert  into `t_role_menu`(`id`,`menu_id`,`role_id`) values (36,10,2),(42,1,2),(45,1,4),(48,1,5),(55,1,9),(65,1,7),(66,10,7),(126,60,15),(127,6010,15),(128,6020,15),(129,6030,15),(130,6040,15),(131,6050,15),(248,2000,1),(259,100000,1),(289,10,1),(290,1000,1),(291,60,1),(292,6000,1),(293,6010,1),(294,6020,1),(295,6030,1),(296,6040,1),(297,6050,1),(298,61,1),(299,6100,1);
 
 /*Table structure for table `t_user` */
 
@@ -99,5 +137,6 @@ CREATE TABLE `t_user_role` (
 insert  into `t_user_role`(`id`,`role_id`,`user_id`) values (1,1,1),(19,2,2),(20,4,2),(21,5,2),(28,2,3),(29,4,3),(30,5,3),(31,7,3),(49,15,5),(50,1,5);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
 /*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
