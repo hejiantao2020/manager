@@ -31,28 +31,14 @@ CREATE TABLE `base_info` (
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
   `update_time` datetime DEFAULT NULL COMMENT '修改时间',
   `resource_id` int(11) DEFAULT '0' COMMENT '资源ID',
+  `resource_name` varchar(54) COLLATE utf8_unicode_ci DEFAULT '' COMMENT '资源名称',
+  `resource_upload_url` varchar(500) COLLATE utf8_unicode_ci DEFAULT '' COMMENT '资源上传路径',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `base_info` */
 
-insert  into `base_info`(`id`,`redio`,`checkbox`,`select_choice`,`start_live_time`,`end_live_time`,`deleted`,`create_time`,`update_time`,`resource_id`) values (1,'1','1','1','2020-08-20 16:50:36','2020-08-20 16:50:39',0,'2020-08-20 16:50:41','2020-08-20 16:50:43',1);
-
-/*Table structure for table `resource` */
-
-DROP TABLE IF EXISTS `resource`;
-
-CREATE TABLE `resource` (
-  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '资源主键ID',
-  `resource_name` varchar(64) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT '资源名称',
-  `resource_local_url` varchar(500) COLLATE utf8_unicode_ci DEFAULT '' COMMENT '资源上传原路径',
-  `resource_upload_url` varchar(500) COLLATE utf8_unicode_ci DEFAULT '' COMMENT '资源上传目标路径',
-  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
-  `update_time` datetime DEFAULT NULL COMMENT '修改时间',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
-/*Data for the table `resource` */
+insert  into `base_info`(`id`,`redio`,`checkbox`,`select_choice`,`start_live_time`,`end_live_time`,`deleted`,`create_time`,`update_time`,`resource_id`,`resource_name`,`resource_upload_url`) values (1,'2','2','2','2020-08-22 00:00:00','2020-09-12 00:00:00',0,'2020-08-20 16:50:41','2020-08-20 16:50:43',1,'',''),(2,'1','1','7','2020-08-31 00:00:00','2020-09-30 00:00:00',0,NULL,NULL,0,'a4457c7b-0c69-4905-8821-ce07f0627fdf.sql','D:/home/file/a4457c7b-0c69-4905-8821-ce07f0627fdf.sql'),(3,'2','2','2','2020-08-21 00:00:00','2020-09-30 00:00:00',0,NULL,NULL,0,'c6ccbe3b-d546-473d-84e3-401e8448c4d1.sql','D:/home/file/c6ccbe3b-d546-473d-84e3-401e8448c4d1.sql');
 
 /*Table structure for table `t_menu` */
 
@@ -66,7 +52,7 @@ CREATE TABLE `t_menu` (
   `url` varchar(200) DEFAULT NULL,
   `p_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1705032705 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=200001 DEFAULT CHARSET=utf8;
 
 /*Data for the table `t_menu` */
 
@@ -82,11 +68,11 @@ CREATE TABLE `t_role` (
   `name` varchar(50) DEFAULT NULL,
   `remarks` varchar(1000) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
 
 /*Data for the table `t_role` */
 
-insert  into `t_role`(`id`,`bz`,`name`,`remarks`) values (1,'系统管理员 最高权限','管理员',NULL),(2,'主管','主管',NULL),(4,'采购员','采购员',NULL),(5,'销售经理','销售经理','22'),(7,'仓库管理员','仓库管理员',NULL),(9,'总经理','总经理',NULL),(15,'111111','111111',NULL),(16,'222','222222',NULL),(17,'33','333333',NULL),(18,'444444','444444',NULL),(19,'555','555555',NULL),(20,'666666','666666',NULL);
+insert  into `t_role`(`id`,`bz`,`name`,`remarks`) values (1,'系统管理员 最高权限','管理员',NULL),(2,'主管','主管',NULL),(4,'采购员','采购员',NULL),(5,'销售经理','销售经理','22'),(7,'仓库管理员','仓库管理员',NULL),(9,'总经理','总经理',NULL),(15,'111111','111111',NULL),(16,'222','222222',NULL),(17,'33','333333',NULL),(18,'444444','444444',NULL),(19,'555','555555',NULL),(20,'666666','666666',NULL),(21,'1111','11111111',NULL);
 
 /*Table structure for table `t_role_menu` */
 

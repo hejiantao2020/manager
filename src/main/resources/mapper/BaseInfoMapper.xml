@@ -9,8 +9,9 @@
     <result column="start_live_time" jdbcType="TIMESTAMP" property="startLiveTime" />
     <result column="end_live_time" jdbcType="TIMESTAMP" property="endLiveTime" />
     <result column="deleted" jdbcType="INTEGER" property="deleted" />
+    <result column="resource_name" jdbcType="VARCHAR" property="resourceName" />
+    <result column="resource_upload_url" jdbcType="VARCHAR" property="resourceUploadUrl" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
-    <result column="resource_id" jdbcType="INTEGER" property="resourceId" />
   </resultMap>
 </mapper>

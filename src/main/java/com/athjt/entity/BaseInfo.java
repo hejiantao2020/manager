@@ -2,14 +2,11 @@
 package com.athjt.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import org.apache.commons.lang3.time.DateFormatUtils;
-import org.apache.commons.lang3.time.DateUtils;
 
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
-import java.text.DateFormat;
 import java.util.Date;
 
 /** 
@@ -31,8 +28,9 @@ public class BaseInfo implements Serializable {
 
     /** 
      * 单选
-     */ 
-    private String redio;
+     */
+	@Column(name = "redio")
+    private String onlyChoice;
 
     /** 
      * 多选
@@ -58,8 +56,28 @@ public class BaseInfo implements Serializable {
      * 逻辑删除0-未删除;1-已删除  默认：0
      */ 
     private Integer deleted;
-
-    /** 
+	private String resourceName;
+	private String resourceUploadUrl;
+	
+	public String getResourceName() {
+		return resourceName;
+	}
+	
+	public BaseInfo setResourceName(String resourceName) {
+		this.resourceName = resourceName;
+		return this;
+	}
+	
+	public String getResourceUploadUrl() {
+		return resourceUploadUrl;
+	}
+	
+	public BaseInfo setResourceUploadUrl(String resourceUploadUrl) {
+		this.resourceUploadUrl = resourceUploadUrl;
+		return this;
+	}
+	
+	/**
      * 创建时间
      */
     @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
@@ -71,12 +89,7 @@ public class BaseInfo implements Serializable {
     @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
     private Date updateTime;
 
-    /** 
-     * 资源ID  默认：0
-     */
-    @Column(name = "resource_id")
-    private Integer resourceId;
-
+   
     /** 
      * 获取 主键ID base_info.id
      * @return 主键ID
@@ -92,24 +105,17 @@ public class BaseInfo implements Serializable {
     public final void setId(Integer id) {
         this.id = id;
     }
-
-    /** 
-     * 获取 单选 base_info.redio
-     * @return 单选
-     */
-    public final String getRedio() {
-        return redio;
-    }
-
-    /** 
-     * 设置 单选 base_info.redio
-     * @param redio 单选
-     */
-    public final void setRedio(String redio) {
-        this.redio = redio == null ? null : redio.trim();
-    }
-
-    /** 
+	
+	public String getOnlyChoice() {
+		return onlyChoice;
+	}
+	
+	public BaseInfo setOnlyChoice(String onlyChoice) {
+		this.onlyChoice = onlyChoice;
+		return this;
+	}
+	
+	/**
      * 获取 多选 base_info.checkbox
      * @return 多选
      */
@@ -216,40 +222,22 @@ public class BaseInfo implements Serializable {
         this.updateTime = updateTime;
     }
 
-    /** 
-     * 获取 资源ID base_info.resource_id
-     * @return 资源ID
-     */
-    public final Integer getResourceId() {
-        return resourceId;
-    }
-
-    /** 
-     * 设置 资源ID base_info.resource_id
-     * @param resourceId 资源ID
-     */
-    public final void setResourceId(Integer resourceId) {
-        this.resourceId = resourceId;
-    }
-
-    @Override
-    public final String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", serialVersionUID=").append(serialVersionUID);
-        sb.append(", id=").append(id);
-        sb.append(", redio=").append(redio);
-        sb.append(", checkbox=").append(checkbox);
-        sb.append(", selectChoice=").append(selectChoice);
-        sb.append(", startLiveTime=").append(DateFormatUtils.format(startLiveTime,"yyyy-MM-dd"));
-        sb.append(", endLiveTime=").append(DateFormatUtils.format(endLiveTime,"yyyy-MM-dd"));
-        sb.append(", deleted=").append(deleted);
-        sb.append(", createTime=").append(createTime);
-        sb.append(", updateTime=").append(updateTime);
-        sb.append(", resourceId=").append(resourceId);
-        sb.append("]");
-        return sb.toString();
-    }
+   
+	@Override
+	public String toString() {
+		final StringBuilder sb = new StringBuilder("BaseInfo{");
+		sb.append("id=").append(id);
+		sb.append(", onlyChoice='").append(onlyChoice).append('\'');
+		sb.append(", checkbox='").append(checkbox).append('\'');
+		sb.append(", selectChoice='").append(selectChoice).append('\'');
+		sb.append(", startLiveTime=").append(startLiveTime);
+		sb.append(", endLiveTime=").append(endLiveTime);
+		sb.append(", deleted=").append(deleted);
+		sb.append(", resourceName='").append(resourceName).append('\'');
+		sb.append(", resourceUploadUrl='").append(resourceUploadUrl).append('\'');
+		sb.append(", createTime=").append(createTime);
+		sb.append(", updateTime=").append(updateTime);
+		sb.append('}');
+		return sb.toString();
+	}
 }

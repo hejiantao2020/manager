@@ -35,11 +35,29 @@
     <button class="layui-btn" id="add">增加</button>
     <button class="layui-btn" id="edit">编辑</button>
     <button class="layui-btn" id="delete">删除</button>
+    <#--<button class="layui-btn" id="upload">上传</button>-->
 </div>
 
 <table id="list2"></table>
 <div id="pager2"></div>
 
+<#--↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓upload↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓-->
+<#--带有 class="layui-fluid" 的容器中，那么宽度将不会固定，而是 100% 适应-->
+<#--<div id="uploadformdivid" hidden="" class="layui-fluid" style="margin: 15px;">-->
+    <#--<form class="layui-form" action="" id="uploadformid">-->
+        <#--<label hidden="true" id="uploadlabelid"></label>-->
+        <#--<input id="uploadid" name="id" value="" hidden/>-->
+        <#--<fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">-->
+            <#--<legend>选完文件后不自动上传</legend>-->
+        <#--</fieldset>-->
+
+        <#--<div class="layui-upload">-->
+            <#--<button type="button" class="layui-btn layui-btn-normal" id="test8">选择文件</button>-->
+            <#--<button type="button" class="layui-btn" id="test9">开始上传</button>-->
+        <#--</div>-->
+    <#--</form>-->
+<#--</div>-->
+<#--↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑upload↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑-->
 
 <#--↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓add↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓-->
 <#--带有 class="layui-fluid" 的容器中，那么宽度将不会固定，而是 100% 适应-->
@@ -47,49 +65,64 @@
     <form class="layui-form" action="" id="addeditformid">
         <label hidden="true" id="editlabelid"></label>
         <input id="editid" name="id" value="" hidden/>
-    <#--单选-->
+    <#--    <input type="text"  id="startLiveTime" name="startLiveTime"  hidden="true"/>
+        <input type="text"  id="endLiveTime"   name="endLiveTime"  hidden="true"/>-->
+        <#--单选-->
         <div class="layui-form-item">
             <label class="layui-form-label">单选框</label>
             <div class="layui-input-block">
-                <input type="radio" name="sex" value="男" title="男" checked="">
-                <input type="radio" name="sex" value="女" title="女">
-                <input type="radio" name="sex" value="禁" title="禁用" disabled="">
+                <input type="radio" name="onlyChoice"  id="onlyChoice" value="1" title="男" checked="">
+                <input type="radio" name="onlyChoice"  id="onlyChoice" value="2" title="女">
             </div>
         </div>
         <div class="layui-form-item" pane="">
-            <label class="layui-form-label">原始复选框</label>
+            <label class="layui-form-label">复选框</label>
             <div class="layui-input-block">
-                <input type="checkbox" name="like1[write]" lay-skin="primary" title="写作" checked="">
-                <input type="checkbox" name="like1[read]" lay-skin="primary" title="阅读">
-                <input type="checkbox" name="like1[game]" lay-skin="primary" title="游戏" disabled="">
+                <input type="checkbox" name="checkbox" lay-skin="primary" value="1" title="写作" checked="">
+                <input type="checkbox" name="checkbox" lay-skin="primary" value="2" title="阅读">
+                <input type="checkbox" name="checkbox" lay-skin="primary" value="3" title="游戏" disabled="">
             </div>
         </div>
         <div class="layui-inline">
-            <label class="layui-form-label">日期范围</label>
+            <label class="layui-form-label">搜索选择框</label>
             <div class="layui-input-inline">
-                <input type="text" class="layui-input" id="test6" placeholder=" - ">
+                <select name="selectChoice" id="selectChoice" lay-verify="required" lay-search="">
+                    <option value="">直接选择或搜索选择</option>
+                    <option value="1">layer</option>
+                    <option value="2">form</option>
+                    <option value="3">layim</option>
+                    <option value="4">element</option>
+                    <option value="5">laytpl</option>
+                    <option value="6">upload</option>
+                    <option value="7">laydate</option>
+                    <option value="8">laypage</option>
+                    <option value="9">flow</option>
+                </select>
             </div>
+        </div><br/>
+        <div class="layui-inline">
+            <label class="layui-form-label">开始时间</label>
+            <div class="layui-input-inline">
+                <input type="text" class="layui-input" id="startLiveTime" name="startLiveTime" id="startLiveTime" />
+            </div>
+
         </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">结束时间</label>
+            <div class="layui-input-inline">
+                <input type="text" class="layui-input" id="endLiveTime"   name="endLiveTime"  id="endLiveTime" />
+            </div>
+
+        </div>
+        <input type="text"  id="resourceName" name="resourceName"  hidden="true"/>
+        <input type="text"  id="resourceUploadUrl"   name="resourceUploadUrl"  hidden="true"/>
         <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
-            <legend>高级应用：制作一个多文件列表</legend>
+            <legend>选完文件后不自动上传</legend>
         </fieldset>
 
         <div class="layui-upload">
-            <button type="button" class="layui-btn layui-btn-normal" id="testList">选择多文件</button>
-            <div class="layui-upload-list">
-                <table class="layui-table">
-                    <thead>
-                    <tr>
-                        <th>文件名</th>
-                        <th>大小</th>
-                        <th>状态</th>
-                        <th>操作</th>
-                    </tr>
-                    </thead>
-                    <tbody id="demoList"></tbody>
-                </table>
-            </div>
-            <button type="button" class="layui-btn" id="testListAction">开始上传</button>
+            <button type="button" class="layui-btn layui-btn-normal" id="test8">选择文件</button>
+            <button type="button" class="layui-btn" id="test9">开始上传</button>
         </div>
         <div class="layui-form-item">
             <div class="layui-input-block">
@@ -174,11 +207,12 @@
     var zTreeObj1;
     var zTreeObj2;
     var layerid;//当前弹层id;这个id可以定义多个，主要的目的是为了在回调函数关闭弹层时使用的
-    layui.use(['layer', 'form', 'layedit', 'laydate'], function () {
+    layui.use(['layer', 'form', 'layedit', 'laydate','upload'], function () {
         var layer = layui.layer,
-                layedit = layui.layedit,
-                laydate = layui.laydate,
-                form = layui.form;
+        layedit = layui.layedit,
+        laydate = layui.laydate,
+        layupload = layui.upload;
+        form = layui.form;
 
         //创建一个编辑器
         var editIndex = layedit.build('LAY_demo_editor');
@@ -195,18 +229,20 @@
             }
         });
 
-        //监听提交
+        //监听(新增)和(编辑)页面中的提交按钮
         form.on('submit(addeditsubmitfilter)', function (data) {
 
             //为了防止form中的id值被重置后置空,将编辑的id存放在label中
             $("#editid").val($("#editlabelid").html());
             $("#editlabelid").html("");
-
+            console.log($('#addeditformid').serialize());
             $.ajax({
                 type: "POST",
-                url: "admin/role/addupdaterole",
+                //contentType: "application/json;charset=UTF-8",
+                url: "admin/baseInfo/addupdatebaseinfo",
                 data: $('#addeditformid').serialize(),
                 async: false,
+                //dataType:'json',
                 error: function (request) {
                     layer.alert("与服务器连接失败/(ㄒoㄒ)/~~");
                 },
@@ -236,7 +272,7 @@
             return false;
         });
 
-        //监听提交
+        //监听设置菜单权限提交
         form.on('submit(editroleformsubmit)', function (data) {
             //为了防止form中的id值被重置后置空,将编辑的id存放在label中
             $("#editroleid").val($("#editrolelabelid").html());
@@ -275,8 +311,28 @@
 
             return false;//防止跳转
         });
+        //上传文件
+        layupload.render({
+            elem: '#test8'
+            ,url: '${basePath!}/admin/fileUpload/uploadFile' //注意这里必须要加${basePath!}，不然请求接口会丢失项目/根访问路径/manager
+            ,auto: false
+            ,accept: 'file'
+            //,multiple: true
+            ,bindAction: '#test9'
+            ,done: function(res){
+                $("#resourceName").val(res.fileName);
+                $("#resourceUploadUrl").val(res.filePath);
+                console.log($("#resourceName").val());
+                console.log($("#resourceUploadUrl").val())
+                layer.msg('上传成功');
 
-        //添加按钮点击事件
+            },
+            error: function(){
+                layer.msg('上传失败');
+            }
+        });
+
+        //添加-按钮点击事件
         $("#add").click(function () {
             $("#reset").click();//重置表单(新建时在进入表单前要重置一下表单的内容，不然表单打开后会显示上一次的表单的内容。这里调用表单中重置按钮的点击方法来重置)
             layerid = layer.open({//开启表单弹层
@@ -287,7 +343,75 @@
                 content: $('#addeditformdivid') //这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
             });
         });
+        //编辑-按钮点击事件
+        $("#edit").click(function () {
 
+            var id = jQuery("#list2").jqGrid('getGridParam', 'selrow');//jqgrid逻辑id，不是业务表单的主键字段id,这里要注意
+            if (id) {
+                var ret = jQuery("#list2").jqGrid('getRowData', id);//通过jqgrid的逻辑id获取该行数据，通过数据对象ret来获取表单主键字段ret.id
+
+                //请求后台，获取该记录的详细记录，并填充进表单
+                $.ajax({
+                    type: "POST",
+                    url: "admin/baseInfo/selectBaseInfoById",
+                    data: {id: ret.id},
+                    async: false,
+                    error: function (request) {
+                        layer.alert("与服务器连接失败/(ㄒoㄒ)/~~");
+                    },
+                    success: function (data) {
+                        if (data.state == 'fail') {
+                            layer.alert(data.mesg);
+                            return false;
+                        }
+                        if (data.state == 'success') {
+                            //向表单填充数据
+                            //页面单选按钮静态时候
+                            $("input[name=onlyChoice][value=1]").attr("checked", data.baseInfo.onlyChoice == '1' ? true : false);
+                            $("input[name=onlyChoice][value=2]").attr("checked", data.baseInfo.onlyChoice == '2' ? true : false);
+
+                            //页面是多选按钮，只选一个时候
+                            $("input[name=checkbox][value=1]").attr("checked", data.baseInfo.checkbox == '1' ? true : false);
+                            $("input[name=checkbox][value=2]").attr("checked", data.baseInfo.checkbox == '2' ? true : false);
+                            $("input[name=checkbox][value=3]").attr("checked", data.baseInfo.checkbox == '3' ? true : false);
+                            //页面是静态下拉框时候
+                            // 遍历select
+                            $("#selectChoice").each(function() {
+                                // this代表的是<option></option>，对option再进行遍历
+                                $(this).children("option").each(function() {
+                                    // 判断需要对那个选项进行回显
+                                    if (this.value == data.baseInfo.checkbox) {
+                                        console.log($(this).text());
+                                        // 进行回显
+                                        $(this).attr("selected",true);
+                                    }
+                                });
+                            })
+                            $("#startLiveTime").val(data.baseInfo.startLiveTime);
+                            $("#endLiveTime").val(data.baseInfo.endLiveTime);
+                            form.render(); //更新全部
+                            $("#editlabelid").html(ret.id);//临时存放id，当提交时再去除赋值给input
+                            //开启编辑表单所在的弹层。注意编辑和新建的表单是一套模板
+                            layerid = layer.open({
+                                skin: 'layui-layer-molv',
+                                area: '60%',
+                                type: 1,
+                                title: '编辑角色',
+                                content: $('#addeditformdivid') //这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
+                            });
+
+                        }
+                    }
+                });
+
+
+            } else {
+                layer.alert("请选择要编辑的记录");
+            }
+
+
+        });
+        //删除-按钮点击事件
         $("#delete").click(function () {
 
             var id = jQuery("#list2").jqGrid('getGridParam', 'selrow');//jqgrid逻辑id，不是业务表单的主键字段id,这里要注意
@@ -343,60 +467,25 @@
 
 
         });
-
-        $("#edit").click(function () {
-
-            var id = jQuery("#list2").jqGrid('getGridParam', 'selrow');//jqgrid逻辑id，不是业务表单的主键字段id,这里要注意
-            if (id) {
-                var ret = jQuery("#list2").jqGrid('getRowData', id);//通过jqgrid的逻辑id获取该行数据，通过数据对象ret来获取表单主键字段ret.id
-
-                //请求后台，获取该记录的详细记录，并填充进表单
-                $.ajax({
-                    type: "POST",
-                    url: "admin/role/selectRoleById",
-                    data: {id: ret.id},
-                    async: false,
-                    error: function (request) {
-                        layer.alert("与服务器连接失败/(ㄒoㄒ)/~~");
-                    },
-                    success: function (data) {
-                        if (data.state == 'fail') {
-                            layer.alert(data.mesg);
-                            return false;
-                        }
-                        if (data.state == 'success') {
-                            //向表单填充数据
-                            $("#editlabelid").html(ret.id);//临时存放id，当提交时再去除赋值给input
-                            $("#name").val(data.trole.name);
-                            $("#bz").val(data.trole.bz);
-
-                            //开启编辑表单所在的弹层。注意编辑和新建的表单是一套模板
-                            layerid = layer.open({
-                                skin: 'layui-layer-molv',
-                                area: '60%',
-                                type: 1,
-                                title: '编辑角色',
-                                content: $('#addeditformdivid') //这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
-                            });
-
-                        }
-                    }
-                });
-
-
-            } else {
-                layer.alert("请选择要编辑的记录");
-            }
-
-
-        });
+        //上传-按钮点击事件
+        // $("#upload").click(function () {
+        //     $("#reset").click();//重置表单(新建时在进入表单前要重置一下表单的内容，不然表单打开后会显示上一次的表单的内容。这里调用表单中重置按钮的点击方法来重置)
+        //     layerid = layer.open({//开启表单弹层
+        //         skin: 'layui-layer-molv',
+        //         area:  ['60%', '50%'],
+        //         type: 1,
+        //         title: '上传文件',
+        //         content: $('#uploadformdivid') //这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
+        //     });
+        //
+        // });
 
 
         $(function () {
             //页面加载完成之后执行
             pageInit();
         });
-
+        //列表初始化
         function pageInit() {
             //创建jqGrid组件
             jQuery("#list2").jqGrid(
@@ -408,13 +497,13 @@
                         //styleUI: 'Bootstrap',
                         datatype: "json",//请求数据返回的类型。可选json,xml,txt
                         emptyrecords: "当前无记录",
-                        colNames: ['ID', '单选', '多选', '下拉', '开始时间', '结束时间', '资源id'],//jqGrid的列显示名字
+                        colNames: ['ID', '单选', '多选', '下拉', '开始时间', '结束时间', '资源路径'],//jqGrid的列显示名字
                         colModel: [  //这里会根据index去解析jsonReader中root对象的属性，填充cell
                             {name: 'id', index: 'id', width: 100, sortable: true, search: false, align: 'center'},
                             {
-                                name: 'redio',
-                                index: 'redio',
-                                width: 100,
+                                name: 'onlyChoice',
+                                index: 'onlyChoice',
+                                width: 10,
                                 sortable: false,
                                 search: false,
                                 align: 'center'
@@ -422,7 +511,7 @@
                             {
                                 name: 'checkbox',
                                 index: 'checkbox',
-                                width: 100,
+                                width: 30,
                                 sortable: false,
                                 search: false,
                                 align: 'center'
@@ -430,7 +519,7 @@
                             {
                                 name: 'selectChoice',
                                 index: 'selectChoice',
-                                width: 100,
+                                width: 10,
                                 sortable: false,
                                 search: false,
                                 align: 'center'
@@ -438,7 +527,7 @@
                             {
                                 name: 'startLiveTime',
                                 index: 'startLiveTime',
-                                width: 100,
+                                width: 50,
                                 sortable: false,
                                 search: false,
                                 align: 'center'
@@ -446,15 +535,15 @@
                             {
                                 name: 'endLiveTime',
                                 index: 'endLiveTime',
-                                width: 100,
+                                width: 50,
                                 sortable: false,
                                 search: false,
                                 align: 'center'
                             },
                             {
-                                name: 'resourceId',
-                                index: 'resourceId',
-                                width: 100,
+                                name: 'resourceUploadUrl',
+                                index: 'resourceUploadUrl',
+                                width: 200,
                                 sortable: false,
                                 search: false,
                                 align: 'center'
@@ -528,123 +617,27 @@
 
         }
 
-        upload = layui.upload;
-        //多文件列表示例
-        var demoListView = $('#demoList')
-                , uploadListIns = upload.render({
-            elem: '#testList'
-            , url: 'admin/fileUpload/uploadFile' //改成您自己的上传接口
-            , accept: 'file'
-            , multiple: true
-            , auto: false
-            , bindAction: '#testListAction'
-            , choose: function (obj) {
-                var files = this.files = obj.pushFile(); //将每次选择的文件追加到文件队列
-                //读取本地文件
-                obj.preview(function (index, file, result) {
-                    var tr = $(['<tr id="upload-' + index + '">'
-                        , '<td>' + file.name + '</td>'
-                        , '<td>' + (file.size / 1024).toFixed(1) + 'kb</td>'
-                        , '<td>等待上传</td>'
-                        , '<td>'
-                        , '<button class="layui-btn layui-btn-xs demo-reload layui-hide">重传</button>'
-                        , '<button class="layui-btn layui-btn-xs layui-btn-danger demo-delete">删除</button>'
-                        , '</td>'
-                        , '</tr>'].join(''));
 
-                    //单个重传
-                    tr.find('.demo-reload').on('click', function () {
-                        obj.upload(index, file);
-                    });
 
-                    //删除
-                    tr.find('.demo-delete').on('click', function () {
-                        delete files[index]; //删除对应的文件
-                        tr.remove();
-                        uploadListIns.config.elem.next()[0].value = ''; //清空 input file 值，以免删除后出现同名文件不可选
-                    });
 
-                    demoListView.append(tr);
-                });
-            }
-            , done: function (res, index, upload) {
-                if (res) { //上传成功
-                    var tr = demoListView.find('tr#upload-' + index)
-                            , tds = tr.children();
-                    tds.eq(2).html('<span style="color: #5FB878;">上传成功</span>');
-                    tds.eq(3).html(''); //清空操作
-                    return delete this.files[index]; //删除文件队列已经上传成功的文件
-                }
-                this.error(index, upload);
-            }
-            , error: function (index, upload) {
-                var tr = demoListView.find('tr#upload-' + index)
-                        , tds = tr.children();
-                tds.eq(2).html('<span style="color: #FF5722;">上传失败</span>');
-                tds.eq(3).find('.demo-reload').removeClass('layui-hide'); //显示重传
+        //日期空间的组件
+        laydate.render({
+            elem: '#startLiveTime'
+            ,type:'datetime'
+            ,change: function(value){
+                console.log(value);
+                $("#startLiveTime").val(value);
             }
         });
-
-        var laydate = layui.laydate;
-        //日期范围
         laydate.render({
-            elem: '#test6'
-            ,range: true
+            elem: '#endLiveTime'
+            ,type:'datetime'
+            ,change: function(value){
+                console.log(value);
+                $("#endLiveTime").val(value);
+            }
         });
 
     });
-
-    function setrolelayer(id) {
-        // zTree 的参数配置，深入使用请参考 API 文档（setting 配置详解）
-        var setting = {
-            check: {
-                enable: true,
-                chkStyle: "checkbox",
-                chkboxType: {"Y": "p", "N": "s"},
-                nocheckInherit: true,
-                chkDisabledInherit: true
-            }
-        };
-        // zTree 的数据属性，深入使用请参考 API 文档（zTreeNode 节点数据详解）
-
-        var zNodes = [
-            {
-                name: "test1", open: true, children: [
-                    {name: "test1_1"}, {name: "test1_2"}]
-            },
-            {
-                name: "test2", open: true, children: [
-                    {name: "test2_1"}, {name: "test2_2"}]
-            }
-        ];
-
-
-        $.ajax({
-            type: "POST",
-            url: 'admin/role/loadCheckMenuInfo?parentId=1&roleId=' + id,
-            async: false,
-            dataType: 'json',
-            timeout: 1000,
-            cache: false,
-            error: function (request) {
-                layer.alert("与服务器连接失败/(ㄒoㄒ)/~~");
-            },
-            success: function (data) {
-                zNodes = data;
-
-                zTreeObj1 = $.fn.zTree.init($("#treeDemo"), setting, zNodes);
-
-                layerid = layer.open({//开启表单弹层
-                    skin: 'layui-layer-molv',
-                    type: 1,
-                    title: '设置权限',
-                    content: $('#setpermisdiv') //这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
-                });
-
-            }
-        });
-
-    }
-
 
 </script>
