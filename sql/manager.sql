@@ -40,6 +40,59 @@ CREATE TABLE `base_info` (
 
 insert  into `base_info`(`id`,`redio`,`checkbox`,`select_choice`,`start_live_time`,`end_live_time`,`deleted`,`create_time`,`update_time`,`resource_id`,`resource_name`,`resource_upload_url`) values (1,'2','2','2','2020-08-22 00:00:00','2020-09-12 00:00:00',0,'2020-08-20 16:50:41','2020-08-20 16:50:43',1,'',''),(2,'1','1','7','2020-08-31 00:00:00','2020-09-30 00:00:00',0,NULL,NULL,0,'a4457c7b-0c69-4905-8821-ce07f0627fdf.sql','D:/home/file/a4457c7b-0c69-4905-8821-ce07f0627fdf.sql'),(3,'2','2','2','2020-08-21 00:00:00','2020-09-30 00:00:00',0,NULL,NULL,0,'c6ccbe3b-d546-473d-84e3-401e8448c4d1.sql','D:/home/file/c6ccbe3b-d546-473d-84e3-401e8448c4d1.sql');
 
+/*Table structure for table `classroom` */
+
+DROP TABLE IF EXISTS `classroom`;
+
+CREATE TABLE `classroom` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '班级ID',
+  `course_id` int(11) DEFAULT NULL COMMENT '课程ID',
+  `class_name` varchar(32) DEFAULT NULL COMMENT '班级名称',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
+
+/*Data for the table `classroom` */
+
+insert  into `classroom`(`id`,`course_id`,`class_name`) values (1,1,'3-1班'),(2,1,'3-2班'),(3,1,'3-3班'),(4,1,'3-4班'),(5,2,'4-4班'),(6,2,'4-4班'),(7,2,'4-4班'),(8,2,'4-4班'),(9,3,'5-1班'),(10,3,'5-2班'),(11,3,'5-3班'),(12,3,'5-4班'),(13,4,'6-1班'),(14,4,'6-2班'),(15,4,'6-3班'),(16,4,'6-4班'),(17,5,'7-1班'),(18,5,'7-2班'),(19,5,'7-3班'),(20,5,'7-4班');
+
+/*Table structure for table `course` */
+
+DROP TABLE IF EXISTS `course`;
+
+CREATE TABLE `course` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '课程ID',
+  `name` varchar(32) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '课程名称',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+/*Data for the table `course` */
+
+insert  into `course`(`id`,`name`) values (1,'语文'),(2,'数学'),(3,'物理'),(4,'化学'),(5,'编程');
+
+/*Table structure for table `student` */
+
+DROP TABLE IF EXISTS `student`;
+
+CREATE TABLE `student` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_name` varchar(255) DEFAULT NULL COMMENT '用户昵称',
+  `sex` int(1) NOT NULL DEFAULT '0' COMMENT '性别',
+  `mobile` varchar(20) DEFAULT NULL COMMENT '电话号码',
+  `login_password` varchar(50) NOT NULL COMMENT '密码',
+  `deleted` int(1) NOT NULL DEFAULT '0' COMMENT '删除状态(0-未删除;1-已删除)',
+  `course_id` int(11) DEFAULT '0' COMMENT '课程ID',
+  `course_name` varchar(32) DEFAULT '' COMMENT '课程名称',
+  `classroom_id` int(11) DEFAULT '0' COMMENT '班级ID',
+  `classroom_name` varchar(21) DEFAULT '' COMMENT '班级名称',
+  `buy_status` int(1) DEFAULT '0' COMMENT '是否购买课程(0-未购买;1-已购买)',
+  `create_time` datetime DEFAULT NULL COMMENT '该记录创建时间',
+  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `vr_user_mobile_uindex` (`mobile`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `student` */
+
 /*Table structure for table `t_menu` */
 
 DROP TABLE IF EXISTS `t_menu`;
