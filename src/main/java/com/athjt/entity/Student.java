@@ -1,6 +1,7 @@
 /* https://github.com/orange1438 */
 package com.athjt.entity;
 
+import javax.persistence.Id;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -15,7 +16,8 @@ public class Student implements Serializable {
     private static final long serialVersionUID = 6609066925640417309L;
 
     /** 
-     */ 
+     */
+	@Id
     private Integer id;
 
     /** 

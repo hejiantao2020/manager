@@ -32,10 +32,10 @@
 </head>
 <body>
 <div class="layui-btn-group">
-    <button class="layui-btn" id="add">增加</button>
+    <#--<button class="layui-btn" id="add">增加</button>
     <button class="layui-btn" id="edit">编辑</button>
     <button class="layui-btn" id="delete">删除</button>
-    <button class="layui-btn" id="buyCourse">购买课程</button>
+    <button class="layui-btn" id="buyCourse">购买课程</button>-->
 </div>
 
 <table id="list2"></table>
@@ -369,7 +369,7 @@
                         //请求后台，执行删除操作
                         $.ajax({
                             type: "POST",
-                            url: "admin/student/deletestudent",
+                            url: "admin/role/deleterole",
                             data: {id: ret.id},
                             async: false,
                             error: function (request) {
@@ -466,47 +466,61 @@
                     {
                         caption: "基础信息",//表格的标题名字
                         mtype: "post",//向后台请求数据的ajax的类型。可选post,get
-                        url: 'admin/student/list',
+                        url: 'admin/student/studentcourselist',
                         datatype: "json",//请求数据返回的类型。可选json,xml,txt
                         emptyrecords: "当前无记录",
-                        colNames: ['ID', '姓名', '性别', '手机'],//jqGrid的列显示名字
+                        colNames: ['ID', '学生ID','姓名', '课程名称', '班级名称', '购买状态'],//jqGrid的列显示名字
                         colModel: [  //这里会根据index去解析jsonReader中root对象的属性，填充cell
                             {name: 'id', index: 'id', width: 50, sortable: true, search: false, align: 'center'},
                             {
-                                name: 'userName',
-                                index: 'userName',
+                                name: 'studentId',
+                                index: 'studentId',
                                 width: 100,
                                 sortable: false,
                                 search: false,
                                 align: 'center'
                             },
                             {
-                                name: 'sex',
-                                index: 'sex',
+                                name: 'studentName',
+                                index: 'studentName',
+                                width: 100,
+                                sortable: false,
+                                search: false,
+                                align: 'center'
+                            },
+                            {
+                                name: 'courseName',
+                                index: 'courseName',
                                 width: 50,
+                                sortable: false,
+                                search: false,
+                                align: 'center'
+                            },
+                            {
+                                name: 'classroomName',
+                                index: 'classroomName',
+                                width: 100,
+                                sortable: false,
+                                search: false,
+                                align: 'center'
+                            },
+                            {
+                                name: 'buyStatus',
+                                index: 'buyStatus',
+                                width: 200,
                                 sortable: false,
                                 search: false,
                                 align: 'center',
                                 formatter: function (cellvalue, options, rowObject) {
                                     var result='';
-                                    if (cellvalue == 1){
-                                        result += '<button class="layui-btn layui-btn-xs">男</button>';
-                                    }else if(cellvalue == 2){
-                                        result += '<button class="layui-btn layui-btn-xs">女</button>';
-                                    }else if(cellvalue == 0){
-                                        result += '<button class="layui-btn layui-btn-xs">空</button>';
+                                    if (cellvalue ==null || cellvalue == 0 ){
+                                        result += '<button class="layui-btn layui-btn-xs">未购买</button>';
+                                    }else{
+                                        result += '<button class="layui-btn layui-btn-xs">已购买</button>';
                                     }
                                     return result;
 
                                 }
-                            },
-                            {
-                                name: 'mobile',
-                                index: 'mobile',
-                                width: 100,
-                                sortable: false,
-                                search: false,
-                                align: 'center'
                             }
                         ],
 

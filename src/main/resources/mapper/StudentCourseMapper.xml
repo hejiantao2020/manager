@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.athjt.mapper.StudentCourseMapper">
+  <resultMap id="BaseResultMap" type="com.athjt.entity.StudentCourse">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="student_id" jdbcType="INTEGER" property="studentId" />
+    <result column="course_id" jdbcType="INTEGER" property="courseId" />
+    <result column="course_name" jdbcType="VARCHAR" property="courseName" />
+    <result column="classroom_id" jdbcType="INTEGER" property="classroomId" />
+    <result column="classroom_name" jdbcType="VARCHAR" property="classroomName" />
+    <result column="buy_status" jdbcType="INTEGER" property="buyStatus" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="deleted" jdbcType="TINYINT" property="deleted" />
+  </resultMap>
+
+  <select id="selectStudentCourseList" resultMap="BaseResultMap" >
+      SELECT
+      stu.id as student_id,
+      stu.sex as sex,
+      stu.user_name as studentName,
+      stu.mobile as studentMobile,
+      scu.id,
+      scu.course_id ,
+      scu.course_name,
+      scu.classroom_id,
+      scu.classroom_name,
+      scu.buy_status
+    FROM
+      student stu
+    LEFT JOIN student_course scu
+    ON stu.id = scu.student_id
+  </select>
+</mapper>
